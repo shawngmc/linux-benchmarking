@@ -9,13 +9,8 @@ RUN dnf upgrade --refresh -y && \
     dnf config-manager --set-enabled crb && \
     dnf install -y epel-release
 
-ARG VERSION=2.52.0
-ENV VERSION=${VERSION}
-
 ARG ARCH=x86-64-v2
 ENV ARCH=${ARCH}
-
-RUN echo "Building version $VERSION"
 
 # Prepare to build libraries
 RUN dnf install autoconf automake bzip2 bzip2-devel cmake freetype-devel gcc gcc-c++ git libtool make pkgconfig zlib-devel && \
