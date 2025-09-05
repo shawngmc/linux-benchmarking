@@ -9,7 +9,7 @@ Per VLC, this file is:
 
 ## Building
 ## Use the [semi-official image](https://hub.docker.com/r/jrottenberg/ffmpeg/) builder based on [this repo](https://github.com/jrottenberg/ffmpeg/blob/main/docker-images/8.0/ubuntu2404-edge)
-Not sure how to add arch - opening a ticket to see if there's a good entrypoint
+Not sure how to add arch - [opened a ticket](https://github.com/jrottenberg/ffmpeg/issues/435) to see if there's a good entrypoint
 ## Manual?
 Build an FFMpeg suitable for converting to AV1 involves a lot...
 - Pull source for libaom-av1
