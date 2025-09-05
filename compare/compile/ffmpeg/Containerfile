@@ -52,9 +52,11 @@ RUN cd ~/ffmpeg_sources && \
     make install
 
 # Build libx265
-# TODO: Add Arch
 RUN cd ~/ffmpeg_sources && \
     git clone --branch stable --depth 2 https://bitbucket.org/multicoreware/x265_git && \
+    cd ~/ffmpeg_sources/x265_git && \
+    echo -e "set(CMAKE_C_FLAGS \"${CMAKE_C_FLAGS} -march=$ARCH\")" >> ./CMakeLists.txt && \
+    echo -e "set(CMAKE_CXX_FLAGS \"${CMAKE_CXX_FLAGS} -march=$ARCH\")" >> ./CMakeLists.txt && \
     cd ~/ffmpeg_sources/x265_git/build/linux && \
     cmake -G "Unix Makefiles" -DCMAKE_INSTALL_PREFIX="$HOME/ffmpeg_build" -DENABLE_SHARED:bool=off ../../source && \
     make && \
@@ -111,7 +113,6 @@ RUN cd ~/ffmpeg_sources && \
     make install
 
 # Build ffmpeg
-# TODO: Add Arch
 RUN cd ~/ffmpeg_sources && \
     curl -O -L https://ffmpeg.org/releases/ffmpeg-snapshot.tar.bz2 && \
     tar xjvf ffmpeg-snapshot.tar.bz2 && \
@@ -119,7 +120,8 @@ RUN cd ~/ffmpeg_sources && \
     PATH="$HOME/bin:$PATH" PKG_CONFIG_PATH="$HOME/ffmpeg_build/lib/pkgconfig" ./configure \
       --prefix="$HOME/ffmpeg_build" \
       --pkg-config-flags="--static" \
-      --extra-cflags="-I$HOME/ffmpeg_build/include" \
+      --extra-cflags="-I$HOME/ffmpeg_build/include -march=$ARCH" \
+      --extra-cxxflags="-march=$ARCH" \
       --extra-ldflags="-L$HOME/ffmpeg_build/lib" \
       --extra-libs=-lpthread \
       --extra-libs=-lm \
