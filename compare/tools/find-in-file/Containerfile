@@ -1,0 +1,14 @@
+FROM rockylinux:9
+
+WORKDIR /root/
+
+RUN dnf upgrade --refresh -y && \
+    dnf install epel-release -y
+
+RUN dnf install -y \
+ hyperfine \
+ sudo \
+ ripgrep
+
+COPY ./bench.sh /root/bench.sh
+ENTRYPOINT /root/bench.sh
