@@ -6,9 +6,12 @@ Take a public domain video, like [U.S. NPS Whitewater Boils](https://www.nps.gov
 Per VLC, this file is:
   - Codec: H264 - MPEG-4 AVC (part 10) (avc1) - H.264 uses libx264
   - Codec: MPEG AAC Audio (mp4a)
-  
-## [AV1 (libaom-av1)](https://trac.ffmpeg.org/wiki/Encode/AV1)
-Build an FFMpeg suitable for converting to AV1, which involves:
+
+## Building
+## Use the [semi-official image](https://hub.docker.com/r/jrottenberg/ffmpeg/) builder based on [this repo](https://github.com/jrottenberg/ffmpeg/blob/main/docker-images/8.0/ubuntu2404-edge)
+Not sure how to add arch - opening a ticket to see if there's a good entrypoint
+## Manual?
+Build an FFMpeg suitable for converting to AV1 involves a lot...
 - Pull source for libaom-av1
 - Build libaom-av1 with arch
 - Pull source for ffmpeg
